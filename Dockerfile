@@ -27,6 +27,6 @@ ENV NUM_TOKENS 256
 
 RUN echo "127.0.0.1 $HOSTNAME" | tee -a /etc/hosts
 
-RUN apache-cassandra-1.2.16/bin/cassandr -fa
+RUN apache-cassandra-1.2.16/bin/cassandra -f
 
 #CMD ["/cassandra.py"]
