@@ -25,4 +25,8 @@ ENV BROADCAST_ADDRESS 127.0.0.1
 ENV RPC_ADDRESS 0.0.0.0
 ENV NUM_TOKENS 256
 
+RUN echo "127.0.0.1 $HOSTNAME" | tee -a /etc/hosts
+
+RUN apache-cassandra-1.2.16/bin/cassandr -fa
+
 #CMD ["/cassandra.py"]
