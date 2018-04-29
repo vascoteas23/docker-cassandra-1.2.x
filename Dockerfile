@@ -30,6 +30,12 @@ RUN echo "127.0.0.1 $HOSTNAME" | tee -a /etc/hosts
 EXPOSE 7000 7001 7199 9042 9160
 CMD ["apache-cassandra-1.2.16/bin/cassandra", "-f"]
 
+COPY reddit_schema.sh /
+
+RUN ./reddit_schema.sh
+
+#CMD ["apache-cassandra-1.2.16/bin/cassandra-cli", "localhost"]
+
 #RUN apache-cassandra-1.2.16/bin/cassandra -f
 
 #CMD ["/cassandra.py"]
