@@ -34,7 +34,7 @@ COPY reddit_schema.sh /
 
 RUN chmod 777 ./reddit_schema.sh
 
-VOLUME ./test
+VOLUME ./test:/test
 #RUN ./reddit_schema.sh
 
 #CMD ["apache-cassandra-1.2.16/bin/cassandra-cli", "localhost"]
