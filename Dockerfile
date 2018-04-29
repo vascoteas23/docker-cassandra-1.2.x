@@ -32,6 +32,8 @@ CMD ["apache-cassandra-1.2.16/bin/cassandra", "-f"]
 
 COPY reddit_schema.sh /
 
+RUN chmod 777 ./reddit_schema.sh
+
 RUN ./reddit_schema.sh
 
 #CMD ["apache-cassandra-1.2.16/bin/cassandra-cli", "localhost"]
