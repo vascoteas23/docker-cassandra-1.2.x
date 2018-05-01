@@ -1,12 +1,14 @@
 FROM ubuntu:12.04
 MAINTAINER Ryan Fowler <ryan.fowler@singlewire.com>
+COPY d/data/ /var/lib/cassandra/data/
 
 RUN apt-get update -y
 RUN apt-get install -y --no-install-recommends openjdk-7-jdk openjdk-7-jre
 RUN apt-get install -y curl vim python-pip libssl-dev
 RUN apt-get install -y python-openssl python-dev
-RUN pip upgrade pip
-RUN pip install python-etcd
+
+#RUN pip install https://github.com/jplana/python-etcd/
+#RUN pip install python-etcd
 
 RUN curl -O "http://archive.apache.org/dist/cassandra/1.2.16/apache-cassandra-1.2.16-bin.tar.gz"
 
@@ -14,7 +16,7 @@ RUN tar -zxvf apache-cassandra-1.2.16-bin.tar.gz
 ENV C_DIR_NAME apache-cassandra-1.2.16
 RUN ln -s /apache-cassandra-1.2.16 /apache-cassandra
 
-RUN mkdir /var/lib/cassandra
+#RUN mkdir /var/lib/cassandra
 RUN mkdir /var/log/cassandra
 #ADD ./cassandra.py /cassandra.py
 #ADD ./cassandra.yaml.template /apache-cassandra-1.2.16/conf/cassandra.yaml.template
@@ -34,8 +36,8 @@ CMD ["apache-cassandra-1.2.16/bin/cassandra", "-f"]
 COPY reddit_schema.sh /
 
 RUN chmod 777 ./reddit_schema.sh
-
-VOLUME ./test/:/test/
+#/Users/v.coelho/Documents/docker-cassandra-1.2.x ./var/lib/cassandra/data
+#VOLUME ["/test", "/test"]
 #RUN ./reddit_schema.sh
 
 #CMD ["apache-cassandra-1.2.16/bin/cassandra-cli", "localhost"]
